@@ -2,7 +2,7 @@ const feedbackForm = document.getElementById("feedbackForm");
 const message = document.getElementById("message");
 const feedbackList = document.getElementById("feedbackList");
 
-// Submit feedback
+
 feedbackForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
