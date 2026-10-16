@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Feedback</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>All Feedback</h1>
+    <a href="/">Back to Feedback Form</a>
+
+    <div id="feedbackList">Loading feedback...</div>
+  </main>
+
+  <script>
+    async function loadFeedback() {
+      const list = document.getElementById("feedbackList");
+
+      try {
+        const response = await fetch("/api/feedback");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch feedback");
+        }
+
+        const feedbacks = await response.json();
+        list.innerHTML = "";
+
+        if (!feedbacks.length) {
+          list.textContent = "No feedback submitted yet.";
+          return;
+        }
+
+        feedbacks.forEach(item => {
+          const card = document.createElement("article");
+          const name = document.createElement("h3");
+          const rating = document.createElement("p");
+          const comments = document.createElement("p");
+
+          name.textContent = item.name;
+          rating.textContent = "Rating: " + item.rating;
+          comments.textContent = item.comments;
+
+          card.append(name, rating, comments);
+          list.appendChild(card);
+        });
+      } catch (error) {
+        list.textContent = "Unable to load feedback. Please check the server.";
+        console.error(error);
+      }
+    }
+
+    loadFeedback();
+  </script>
+</body>
+</html>

@@ -58,7 +58,7 @@ async function loadFeedback() {
       card.innerHTML = `
         <h3>${item.name}</h3>
         <p><strong>Rating:</strong> ${item.rating}/5</p>
-        <p><strong>Comment:</strong> ${item.comment}</p>
+        <p><strong>Comment:</strong> ${item.comments}</p>
       `;
 
       feedbackList.appendChild(card);
