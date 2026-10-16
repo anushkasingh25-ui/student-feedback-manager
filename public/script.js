@@ -8,7 +8,7 @@ feedbackForm.addEventListener("submit", async (event) => {
 
   const name = document.getElementById("name").value;
   const rating = document.getElementById("rating").value;
-  const comment = document.getElementById("comment").value;
+  const comments = document.getElementById("comments").value;
 
   try {
     const response = await fetch("/api/feedback", {
@@ -21,7 +21,7 @@ feedbackForm.addEventListener("submit", async (event) => {
       body: JSON.stringify({
         name: name,
         rating: rating,
-        comment: comment
+        comments: comments
       })
     });
 

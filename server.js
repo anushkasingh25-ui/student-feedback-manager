@@ -13,7 +13,7 @@ app.use(express.static("public"));
 const Feedback = require("./models/Feedback");
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("MongoDB connected successfully!");
   })
@@ -28,12 +28,12 @@ app.get("/api/test", (req, res) => {
 
 app.post("/api/feedback", async (req, res) => {
   try {
-    const { name, rating, comment } = req.body;
+    const { name, rating, comments } = req.body;
 
     const feedback = new Feedback({
       name: name,
       rating: rating,
-      comment: comment
+      comments: comments
     });
 
     await feedback.save();

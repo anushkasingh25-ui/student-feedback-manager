@@ -11,7 +11,7 @@ const feedbackSchema = new mongoose.Schema({
     required: true
   },
 
-  comment: {
+  comments: {
     type: String,
     required: true
   }
